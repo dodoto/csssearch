@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CSS3搜索框展开收缩动画特效抄的</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #252525;
+}
+
+.container {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 300px;
+  height: 100px;
+}
+.container .search {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 25px;
+  height: 25px;
+  background: white;
+  border-radius: 50%;
+  transition: all 1s;
+  z-index: 4;
+}
+.container .search:hover {
+  cursor: pointer;
+}
+/*放大镜*/
+.container .search::before {
+  content: "";
+  position: absolute;
+  margin: auto;
+  top: 13px;
+  right: 0;
+  bottom: 0;
+  left: 13px;
+  width: 5px;
+  height: 2px;
+  background: gray;
+  transform: rotate(45deg);
+  transition: all .5s;
+}
+.container .search::after {
+  content: "";
+  position: absolute;
+  margin: auto;
+  top: -1px;
+  right: 0;
+  bottom: 0;
+  left: -1px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid gray;
+  transition: all .5s;
+}
+.container input {
+  font-family: 'Inconsolata', monospace;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  outline: none;
+  border: none;
+  background: white;
+  color: gray;
+  padding: 0 80px 0 20px;
+  border-radius: 30px;
+  transition: all 1s;
+  opacity: 0;
+  z-index: 5;
+  font-weight: bolder;
+  letter-spacing: 0.1em;
+}
+.container input:hover {
+  cursor: pointer;
+}
+.container input:focus {
+  width: 200px;
+  opacity: 1;
+  cursor: text;
+}
+.container input:focus ~ .search {
+  right: -170px;
+  background: gray;
+  z-index: 6;
+}
+/*X按钮*/
+.container input:focus ~ .search::before {
+  top: 0;
+  left: 0px;
+  background: white;
+  width: 25px;
+}
+.container input:focus ~ .search::after {
+  top: 0;
+  left: 0px;
+  width: 25px;
+  height: 2px;
+  border: none;
+  background: white;
+  border-radius: 0%;
+  transform: rotate(-45deg);
+}
+.container input::placeholder {
+  color: gray;
+  opacity: 0.5;
+  font-weight: bolder;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+  <input type="text" placeholder="Search...">
+  <div class="search"></div>
+</div>
+</body>
+</html>
